@@ -4,8 +4,8 @@
   - password_digest :string
 
 - task
-  - task_name :stgrings
-  - task_content :text
+  - title :stgrings
+  - content :text
   - deadline :datetime
   - priority :integer
   - status :integer
