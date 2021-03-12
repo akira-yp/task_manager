@@ -1,6 +1,12 @@
 <h1>タスク詳細</h1>
 <div class="">
-  <%= @task.title %>
-  <%= @task.content %>
+  <div class="">
+      title:<%= @task.title %>
+  </div>
+  <div class="">
+      content:<%= @task.content %>
+  </div>
+  <%= link_to "編集", edit_task_path(@task.id) %>
+  <%= link_to "削除", task_path(@task.id), method: :delete %>
   <%= link_to "戻る", tasks_path %>
 </div>
