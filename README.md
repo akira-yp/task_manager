@@ -1,10 +1,10 @@
 - user
-  - user_name :string
+  - name :string
   - email :string
   - password_digest :string
 
 - task
-  - title :stgrings
+  - title :string
   - content :text
   - deadline :datetime
   - priority :integer
