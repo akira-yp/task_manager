@@ -4,3 +4,5 @@ ja:
     index_tasks: タスク一覧
     create_task: タスク作成
     detail_task: タスク詳細
+    title: タスク名
+    content: 内容
