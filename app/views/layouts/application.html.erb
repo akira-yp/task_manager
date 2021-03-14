@@ -10,6 +10,11 @@
   </head>
 
   <body>
+    <header>
+      <%= link_to "タスク作成", new_task_path %>
+      <%= link_to "タスク一覧", tasks_path %>
+    </header>
+    <%= notice %>
     <%= yield %>
   </body>
 </html>
