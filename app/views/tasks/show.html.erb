@@ -1,4 +1,4 @@
-<h1>タスク詳細</h1>
+<h1><%= t('view.detail_task') %></h1>
 <div class="">
   <div class="">
       title:<%= @task.title %>
@@ -6,7 +6,7 @@
   <div class="">
       content:<%= @task.content %>
   </div>
-  <%= link_to "編集", edit_task_path(@task.id) %>
-  <%= link_to "削除", task_path(@task.id), method: :delete %>
-  <%= link_to "戻る", tasks_path %>
+  <%= link_to "edit", edit_task_path(@task.id) %>
+  <%= link_to "destroy", task_path(@task.id), method: :delete %>
+  <%= link_to "back", tasks_path %>
 </div>

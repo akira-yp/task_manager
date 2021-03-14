@@ -1,10 +1,10 @@
-<h1>タスク一覧</h1>
+<h1><%= t('view.index_tasks') %></h1>
 <% @tasks.each do |task| %>
 <div class="">
   <%= task.title %>
   <%= task.content %>
-  <%= link_to "詳細", task_path(task.id) %>
-  <%= link_to "編集", edit_task_path(task.id) %>
-  <%= link_to "削除", task_path(task.id), method: :delete %>
+  <%= link_to "show", task_path(task.id) %>
+  <%= link_to "edit", edit_task_path(task.id) %>
+  <%= link_to "destroy", task_path(task.id), method: :delete %>
 </div>
 <% end %>
