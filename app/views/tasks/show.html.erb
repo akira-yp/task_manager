@@ -1,10 +1,10 @@
 <h1><%= t('view.detail_task') %></h1>
 <div class="">
   <div class="">
-      title:<%= @task.title %>
+      <%= t('view.title') %>:<%= @task.title %>
   </div>
   <div class="">
-      content:<%= @task.content %>
+      <%= t('view.content') %>:<%= @task.content %>
   </div>
   <%= link_to "edit", edit_task_path(@task.id) %>
   <%= link_to "destroy", task_path(@task.id), method: :delete %>

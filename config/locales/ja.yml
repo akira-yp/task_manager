@@ -6,3 +6,10 @@ ja:
     detail_task: タスク詳細
     title: タスク名
     content: 内容
+  activerecord:
+    models:
+      task: タスク
+    attributes:
+      task:
+        title: タスク名
+        content: 内容
