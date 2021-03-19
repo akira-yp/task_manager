@@ -6,7 +6,7 @@
   <div class="">
       <%= t('view.content') %>:<%= @task.content %>
   </div>
-  <%= link_to "edit", edit_task_path(@task.id) %>
-  <%= link_to "destroy", task_path(@task.id), method: :delete %>
-  <%= link_to "back", tasks_path %>
+  <%= link_to t('view.edit'), edit_task_path(@task.id) %>
+  <%= link_to t('view.destroy'), task_path(@task.id), method: :delete %>
+  <%= link_to t('view.back'), tasks_path %>
 </div>

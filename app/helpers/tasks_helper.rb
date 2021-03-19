@@ -1,9 +1,9 @@
 module TasksHelper
   def button_label
     if action_name == 'new'
-      "登録する"
+      t('view.submit_task')
     elsif action_name == 'edit'
-      "更新する"
+      t('view.update_task')
     end
   end
 end
