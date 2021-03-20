@@ -1,10 +1,23 @@
-<h1>タスク一覧</h1>
-<% @tasks.each do |task| %>
-<div class="">
-  <%= task.title %>
-  <%= task.content %>
-  <%= link_to "詳細", task_path(task.id) %>
-  <%= link_to "編集", edit_task_path(task.id) %>
-  <%= link_to "削除", task_path(task.id), method: :delete %>
-</div>
-<% end %>
+<h1><%= t('view.index_tasks') %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= t('view.title') %></th>
+      <th><%= t('view.content') %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr class="task_row">
+        <td class"task_title"><%= task.title %></td>
+        <td><%= task.content %></td>
+        <td><%= link_to t('view.show'), task_path(task.id) %></td>
+        <td><%= link_to t('view.edit'), edit_task_path(task.id) %></td>
+        <td><%= link_to t('view.destroy'), task_path(task.id), method: :delete, data: { confirm: '削除してよろしいですか？' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

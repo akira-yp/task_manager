@@ -1,0 +1,21 @@
+ja:
+  view:
+    edit_task: タスクの編集
+    index_tasks: タスク一覧
+    create_task: タスク作成
+    detail_task: タスク詳細
+    submit_task: 登録する
+    update_task: 更新する
+    title: タスク名
+    content: 内容
+    show: 詳細
+    edit: 編集
+    destroy: 削除
+    back: 戻る
+  activerecord:
+    models:
+      task: タスク
+    attributes:
+      task:
+        title: タスク名
+        content: 内容

@@ -19,7 +19,6 @@
   - task_id :integer
   - label_id :integer
 
-
 ## herokuへのデプロイ手順
 1. herokuにログインする
 2. アセットプリコンパイルを実行
