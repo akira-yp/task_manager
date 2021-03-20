@@ -33,6 +33,14 @@
     </div>
   </div>
   <div class="">
+    <div class="">
+      <%= f.label :status %>
+    </div>
+    <div class="">
+      <%= f.select :status,[["未着手","未着手"],["着手中","着手中"],["完了","完了"]],include_blank: "選択して下さい" %>
+    </div>
+  </div>
+  <div class="">
     <%= f.submit button_label %>
   </div>
 <% end %>
