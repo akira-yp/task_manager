@@ -5,6 +5,7 @@
     <tr>
       <th><%= t('view.title') %></th>
       <th><%= t('view.content') %></th>
+      <th><%= t('view.expired_at') %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,6 +15,7 @@
       <tr class="task_row">
         <td class"task_title"><%= task.title %></td>
         <td><%= task.content %></td>
+        <td><%= task.expired_at.strftime("%m月%d日%H:%M") %></td>
         <td><%= link_to t('view.show'), task_path(task.id) %></td>
         <td><%= link_to t('view.edit'), edit_task_path(task.id) %></td>
         <td><%= link_to t('view.destroy'), task_path(task.id), method: :delete, data: { confirm: '削除してよろしいですか？' } %></td>

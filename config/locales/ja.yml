@@ -8,6 +8,7 @@ ja:
     update_task: 更新する
     title: タスク名
     content: 内容
+    expired_at: 終了期限
     show: 詳細
     edit: 編集
     destroy: 削除
@@ -19,3 +20,4 @@ ja:
       task:
         title: タスク名
         content: 内容
+        expired_at: 終了期限

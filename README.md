@@ -7,7 +7,7 @@
 - task
   - title :string
   - content :text
-  - deadline :datetime
+  - expired_at :datetime
   - priority :integer
   - status :integer
   - user_id :integer
