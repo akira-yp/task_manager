@@ -6,4 +6,8 @@ class Task < ApplicationRecord
   enum status: {
     未着手:1,着手中:2,完了:3
   }
+
+  scope :search_title, -> (data){ where('title Like ?', "%#{data}%") }
+  scope :search_status, -> (data){ where(status: data) }
+
 end
