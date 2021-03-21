@@ -3,13 +3,16 @@ require 'date'
 RSpec.describe 'タスク管理機能', type: :system do
   describe '新規作成機能' do
     context 'タスクを新規作成した場合' do
-      it '作成したタスクが表示される' do
+      before do
         visit new_task_path
         test_day = DateTime.now
         fill_in 'タスク名', with: 'testA'
         fill_in '内容', with: 'test_contentA'
         fill_in '終了期限', with: test_day
+        select '未着手',from:'task_status'
         click_button '登録する'
+      end
+      it '作成したタスクが表示される' do
         expect(page).to have_content 'test_contentA'
       end
     end

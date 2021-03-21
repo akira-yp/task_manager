@@ -37,7 +37,7 @@
       <%= f.label :status %>
     </div>
     <div class="">
-      <%= f.select :status,[["未着手","未着手"],["着手中","着手中"],["完了","完了"]],include_blank: "選択して下さい" %>
+      <%= f.select :status,Task.statuses.keys,{prompt: "選択してください"}, class: "status-select" %>
     </div>
   </div>
   <div class="">
