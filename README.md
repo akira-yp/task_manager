@@ -39,3 +39,5 @@ git push heroku master
 ```
 heroku run rails db:migrate
 ```
+
+@tasks = Task.all.order(priority: :ASC).page(params[:page]).per(20)

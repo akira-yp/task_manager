@@ -3,18 +3,22 @@ class TasksController < ApplicationController
   def index
     if params[:task].present?
       if params[:task][:title].present? && params[:task][:status].present?
-        @tasks = Task.search_title(params[:task][:title]).search_status(params[:task][:status]).page(params[:page]).per(20)
+        @tasks = Task.search_title(params[:task][:title]).search_status(params[:task][:status]).page(params[:page])
       elsif params[:task][:title].present?
-        @tasks = Task.search_title(params[:task][:title]).page(params[:page]).per(20)
+        @tasks = Task.search_title(params[:task][:title]).page(params[:page])
       elsif params[:task][:status].present?
-        @tasks = Task.search_status(params[:task][:status]).page(params[:page]).per(20)
+        @tasks = Task.search_status(params[:task][:status]).page(params[:page])
+      else
+        @tasks = Task.all.order(created_at: :DESC).page(params[:page])
       end
-    elsif params[:sort_expired]
-      @tasks = Task.all.order(expired_at: :DESC).page(params[:page]).per(20)
-    elsif params[:sort_priority]
-      @tasks = Task.all.order(priority: :ASC).page(params[:page]).per(20)
     else
-      @tasks = Task.all.order(created_at: :DESC).page(params[:page]).per(20)
+      if params[:sort_expired]
+        @tasks = Task.all.order(expired_at: :DESC).page(params[:page])
+      elsif params[:sort_priority]
+        @tasks = Task.all.order(priority: :ASC).page(params[:page])
+      else
+        @tasks = Task.all.order(created_at: :DESC).page(params[:page])
+      end
     end
   end
 
