@@ -11,6 +11,7 @@
   content = Faker::Lorem.sentence
   expired_at = Faker::Date.between(from: Date.today, to: 1.year.from_now)
   status = rand(1..3)
+  priority = rand(1..3)
 
-  Task.create!(title: title, content: content, expired_at: expired_at, status: status)
+  Task.create!(title: title, content: content, expired_at: expired_at, status: status, priority: priority )
 end

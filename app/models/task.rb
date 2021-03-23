@@ -7,6 +7,10 @@ class Task < ApplicationRecord
     未着手:1,着手中:2,完了:3
   }
 
+  enum priority: {
+    高:1, 中:2, 低:3
+  }
+
   scope :search_title, -> (data){ where('title Like ?', "%#{data}%") }
   scope :search_status, -> (data){ where(status: data) }
 

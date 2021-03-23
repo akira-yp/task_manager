@@ -41,6 +41,14 @@
     </div>
   </div>
   <div class="">
+    <div class="">
+      <%= f.label :priority %>
+    </div>
+    <div class="">
+      <%= f.select :priority, Task.priorities.keys,{prompt: "選択してください"},class: "priority-select" %>
+    </div>
+  </div>
+  <div class="">
     <%= f.submit button_label %>
   </div>
 <% end %>

@@ -18,7 +18,7 @@ RSpec.describe 'タスク管理機能', type: :system do
     end
   end
   describe '一覧表示機能' do
-    let!(:task_a){FactoryBot.create(:task)}
+    let!(:task_a){FactoryBot.create(:first_task)}
     let!(:task_b){FactoryBot.create(:second_task)}
     let!(:task_c){FactoryBot.create(:third_task)}
     before do
@@ -46,9 +46,17 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(oldest_deadline).to have_content "test_title2"
       end
     end
+    context '優先順位でソートした場合' do
+      it '優先順位が最も高いタスクが一番上に表示される' do
+        click_on '優先順位でソート'
+        task_list = all('.task_row')
+        highest_priority = task_list[0]
+        expect(highest_priority).to have_content "test_title3"
+      end
+    end
   end
   describe '検索機能' do
-    let!(:task_a){FactoryBot.create(:task)}
+    let!(:task_a){FactoryBot.create(:first_task)}
     let!(:task_b){FactoryBot.create(:second_task)}
     let!(:task_c){FactoryBot.create(:third_task)}
     before do
@@ -86,7 +94,7 @@ RSpec.describe 'タスク管理機能', type: :system do
   describe '詳細表示機能' do
      context '任意のタスク詳細画面に遷移した場合' do
        it '該当タスクの内容が表示される' do
-         show_task = FactoryBot.create(:task)
+         show_task = FactoryBot.create(:first_task)
          visit task_path(show_task.id)
          expect(page).to have_content 'test_title1'
        end
