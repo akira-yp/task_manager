@@ -47,6 +47,42 @@ RSpec.describe 'タスク管理機能', type: :system do
       end
     end
   end
+  describe '検索機能' do
+    let!(:task_a){FactoryBot.create(:task)}
+    let!(:task_b){FactoryBot.create(:second_task)}
+    let!(:task_c){FactoryBot.create(:third_task)}
+    before do
+      visit tasks_path
+    end
+    context 'タイトルであいまい検索をした場合' do
+      it '検索キーワードを含むタスクが絞り込まれる' do
+        fill_in 'タスク名', with:'title1'
+        click_button '検索'
+        expect(page).to have_content 'test_title1'
+      end
+    end
+    context 'ステータスで検索をした場合' do
+      it '検索ステータスに完全一致するタスクが絞り込まれる' do
+        select '着手中',from:'ステータス'
+        click_button '検索'
+        expect(page).to have_content 'test_title2'
+      end
+    end
+    context 'タイトルのあいまい検索とステータス検索をした場合' do
+      it '検索キーワードをタイトルに含み、かつステータスに完全一致するタスクが絞り込まれる' do
+        fill_in 'タスク名', with:'title'
+        select '完了', from:'ステータス'
+        click_button '検索'
+        expect(page).to have_content 'test_title3'
+      end
+      it '検索キーワードしか一致していないタスクは絞り込まれない' do
+        fill_in 'タスク名', with:'title'
+        select '完了', from:'ステータス'
+        click_button '検索'
+        expect(page).to have_no_content 'test_title1'
+      end
+    end
+  end
   describe '詳細表示機能' do
      context '任意のタスク詳細画面に遷移した場合' do
        it '該当タスクの内容が表示される' do

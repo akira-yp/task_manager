@@ -4,7 +4,7 @@
 <%= link_to "" %>
 
 <%= form_with(scope: :task, url: tasks_path, method: :get, local: true) do |f| %>
-  <%= f.label :title, 'タイトル' %>
+  <%= f.label :title, 'タスク名' %>
   <%= f.text_field :title %>
   <%= f.label :status, 'ステータス' %>
   <%= f.select :status,Task.statuses.keys,{prompt: "選択してください"}, class: "status-select" %>
