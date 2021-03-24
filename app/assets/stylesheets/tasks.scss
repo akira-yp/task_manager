@@ -1,3 +1,41 @@
 // Place all the styles related to the tasks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+header {
+  background-color: #F4F5F7;
+}
+
+h2 {
+  font-size: 1.2rem;
+  color: #696969;
+}
+
+label {
+  color: #696969;
+}
+
+p,th,td {
+  color: #696969;
+}
+
+.nav-link {
+  color: #696969;
+}
+
+.pagination {
+  justify-content: center;
+}
+
+.main-area{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-card {
+  width: 500px;
+  height: 550px;
+  padding: 10px;
+  border: 1px solid #DFDFDF;
+  border-radius: 5px;
+}

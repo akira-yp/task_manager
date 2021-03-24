@@ -38,7 +38,7 @@ RSpec.describe 'タスク管理機能', type: :system do
     end
     context '終了期限でソートした場合' do
       before do
-        click_on '終了期限でソート'
+        click_on '終了期限'
       end
       it '終了期限が最も新しいタスクが一番上に表示される' do
         task_list = all('.task_row')
@@ -48,7 +48,7 @@ RSpec.describe 'タスク管理機能', type: :system do
     end
     context '優先順位でソートした場合' do
       it '優先順位が最も高いタスクが一番上に表示される' do
-        click_on '優先順位でソート'
+        click_on '優先度'
         task_list = all('.task_row')
         highest_priority = task_list[0]
         expect(highest_priority).to have_content "test_title3"
