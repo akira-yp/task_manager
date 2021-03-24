@@ -13,7 +13,9 @@ RSpec.describe 'タスク管理機能', type: :system do
         click_button '登録する'
       end
       it '作成したタスクが表示される' do
+        expect(page).to have_content 'testA'
         expect(page).to have_content 'test_contentA'
+        expect(page).to have_content '未着手'
       end
     end
   end
