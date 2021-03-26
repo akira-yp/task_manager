@@ -18,6 +18,7 @@ ja:
   activerecord:
     models:
       task: タスク
+      user: ユーザー
     attributes:
       task:
         title: タスク名
@@ -25,3 +26,7 @@ ja:
         expired_at: 終了期限
         status: ステータス
         priority: 優先度
+      user:
+        name: 名前
+        email: e-mail
+        password_digest: パスワード
