@@ -1,23 +1,54 @@
-<h1><%= t('view.index_tasks') %></h1>
+<%= form_with(scope: :task, url: tasks_path, method: :get, local: true) do |f| %>
+  <div class="container">
+    <div class="row my-4 justify-content-md-left">
+      <div class:"col-auto">
+        <%= f.label :title, 'タスク名', class:"form-label" %>
+      </div>
+      <div class="col-auto">
+        <%= f.text_field :title, class:"form-control" %>
+      </div>
+      <div class="col-auto">
+        <%= f.label :status, 'ステータス', class:"form-label"%>
+      </div>
+      <div class="col-auto">
+        <%= f.select :status,Task.statuses.keys,{ include_blank: '選択してください' }, {class:"form-control status-select"} %>
+      </div>
+      <div class="col-auto">
+        <%= f.submit '検索' , class:"btn btn-outline-secondary" %>
+      </div>
+    </div>
+  </div>
+<% end %>
 
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
-      <th><%= t('view.title') %></th>
-      <th><%= t('view.content') %></th>
-      <th colspan="3"></th>
+      <th scope="col"><%= t('view.title') %></th>
+      <th scope="col"><%= t('view.content') %></th>
+      <th scope="col"><%= link_to t('view.expired_at'), tasks_path(sort_expired:"true") %></th>
+      <th scope="col"><%= t('view.status') %></th>
+      <th scope="col"><%= link_to t('view.priority'), tasks_path(sort_priority:"true") %></th>
+      <th scope="col"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @tasks.each do |task| %>
       <tr class="task_row">
-        <td class"task_title"><%= task.title %></td>
+        <td><%= task.title %></td>
         <td><%= task.content %></td>
-        <td><%= link_to t('view.show'), task_path(task.id) %></td>
-        <td><%= link_to t('view.edit'), edit_task_path(task.id) %></td>
-        <td><%= link_to t('view.destroy'), task_path(task.id), method: :delete, data: { confirm: '削除してよろしいですか？' } %></td>
+        <td><%= task.expired_at.strftime("%m/%d/%H:%M") %></td>
+        <td><%= task.status %></td>
+        <td><%= task.priority %></td>
+        <td>
+        <%= link_to t('view.show'), task_path(task.id),class:"btn btn-sm btn-outline-secondary" %>
+        <%= link_to t('view.edit'), edit_task_path(task.id),class:"btn btn-sm btn-outline-secondary" %>
+        <%= link_to t('view.destroy'), task_path(task.id), method: :delete, data: { confirm: '削除してよろしいですか？'},class:"btn btn-sm btn-outline-danger" %>
+      </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<div class="">
+  <%= paginate @tasks %>
+</div>

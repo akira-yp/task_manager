@@ -1,12 +1,36 @@
-<h1><%= t('view.detail_task') %></h1>
-<div class="">
-  <div class="">
-      <%= t('view.title') %>:<%= @task.title %>
+<h2><%= t('view.detail_task') %></h2>
+<div class="main-area">
+  <div class="card" style="width: 20rem;" >
+    <div class="card-header">
+      <%= @task.title %>
+    </div>
+    <div class="card-body">
+      <%= @task.content %>
+    </div>
+    <ul class="list-group list-group-flush" >
+      <li class="list-group-item">
+        <div class="badge bg-info text-wrap text-light" style="width: 4.5rem;">
+          <%= t('view.expired_at') %>
+        </div>
+        <%= @task.expired_at.strftime("%m月%d日%H:%M") %>
+      </li>
+      <li class="list-group-item">
+        <div class="badge bg-info text-wrap text-light" style="width: 4.5rem;">
+          <%= t('view.status') %>
+        </div>
+        <%= @task.status %>
+      </li>
+      <li class="list-group-item">
+        <div class="badge bg-info text-wrap text-light" style="width: 4.5rem;">
+          <%= t('view.priority') %>
+        </div>
+        <%= @task.priority %>
+      </li>
+    </ul>
+    <div class="card-body">
+      <%= link_to t('view.edit'), edit_task_path(@task.id) ,class:"btn btn-outline-info btn-sm" %>
+      <%= link_to t('view.destroy'), task_path(@task.id), method: :delete ,class:"btn btn-outline-danger btn-sm" %>
+      <%= link_to t('view.back'), tasks_path,class:"btn btn-outline-secondary btn-sm" %>
+    </div>
   </div>
-  <div class="">
-      <%= t('view.content') %>:<%= @task.content %>
-  </div>
-  <%= link_to t('view.edit'), edit_task_path(@task.id) %>
-  <%= link_to t('view.destroy'), task_path(@task.id), method: :delete %>
-  <%= link_to t('view.back'), tasks_path %>
 </div>

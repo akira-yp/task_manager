@@ -7,7 +7,7 @@
 - task
   - title :string
   - content :text
-  - deadline :datetime
+  - expired_at :datetime
   - priority :integer
   - status :integer
   - user_id :integer
@@ -39,3 +39,5 @@ git push heroku master
 ```
 heroku run rails db:migrate
 ```
+
+@tasks = Task.all.order(priority: :ASC).page(params[:page]).per(20)
