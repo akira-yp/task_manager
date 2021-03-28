@@ -54,7 +54,7 @@ class TasksController < ApplicationController
     if @task.destroy
       redirect_to tasks_path, notice: "タスクを削除しました"
     else
-      renser :index
+      render :index
     end
   end
 
