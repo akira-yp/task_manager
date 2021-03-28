@@ -6,4 +6,8 @@ module SessionsHelper
   def logged_in?
     current_user.present?
   end
+
+  def not_login_user?
+    redirect_to tasks_path if @user.id != current_user.id
+  end
 end

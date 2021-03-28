@@ -4,21 +4,21 @@ class TasksController < ApplicationController
   def index
     if params[:task].present?
       if params[:task][:title].present? && params[:task][:status].present?
-        @tasks = Task.search_title(params[:task][:title]).search_status(params[:task][:status]).page(params[:page])
+        @tasks = current_user.tasks.search_title(params[:task][:title]).search_status(params[:task][:status]).page(params[:page])
       elsif params[:task][:title].present?
-        @tasks = Task.search_title(params[:task][:title]).page(params[:page])
+        @tasks = current_user.tasks.search_title(params[:task][:title]).page(params[:page])
       elsif params[:task][:status].present?
-        @tasks = Task.search_status(params[:task][:status]).page(params[:page])
+        @tasks = current_user.tasks.search_status(params[:task][:status]).page(params[:page])
       else
-        @tasks = Task.all.order(created_at: :DESC).page(params[:page])
+        @tasks = current_user.tasks.all.order(created_at: :DESC).page(params[:page])
       end
     else
       if params[:sort_expired]
-        @tasks = Task.all.order(expired_at: :DESC).page(params[:page])
+        @tasks = current_user.tasks.all.order(expired_at: :DESC).page(params[:page])
       elsif params[:sort_priority]
-        @tasks = Task.all.order(priority: :ASC).page(params[:page])
+        @tasks = current_user.tasks.all.order(priority: :ASC).page(params[:page])
       else
-        @tasks = Task.all.order(created_at: :DESC).page(params[:page])
+        @tasks = current_user.tasks.all.order(created_at: :DESC).page(params[:page])
       end
     end
   end
@@ -27,11 +27,11 @@ class TasksController < ApplicationController
   end
 
   def new
-    @task = Task.new
+    @task = current_user.tasks.new
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.new(task_params)
     if @task.save
       redirect_to tasks_path, notice: "新しいタスクを追加しました"
     else
@@ -60,7 +60,7 @@ class TasksController < ApplicationController
 
   private
   def set_task
-    @task = Task.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
   end
 
   def task_params

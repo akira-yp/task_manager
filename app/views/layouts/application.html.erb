@@ -11,11 +11,9 @@
 
   <body>
     <header class="sticky-top">
-      <% flash.each do |key, value| %>
-        <%= content_tag(:div, value, class: "#{key}") %>
-      <% end %>
       <nav class="navbar">
         <ul class="nav">
+          <%=  %>
           <%= link_to "TASK MANAGER", tasks_path, class:"nav-link navbar-brand" %>
           <% if logged_in? %>
             <li class="nav-item">
@@ -23,6 +21,12 @@
             </li>
             <li class="nav-item">
               <%= link_to "タスク一覧", tasks_path, class:"nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "マイページ", user_path(current_user.id), class:"nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ログアウト", session_path(current_user.id), method: :delete, class:"nav-link" %>
             </li>
           <% else %>
             <li class="nav-item">
@@ -36,7 +40,9 @@
       </nav>
     </header>
     <div class="">
-      <%= notice %>
+      <% flash.each do |key, value| %>
+        <%= content_tag(:div, value, class: "#{key}") %>
+      <% end %>
       <%= yield %>
     </div>
   </body>

@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # 200.times do |n|
-#   title = Gimei.prefecture.kanji
+#   title =
 #   content = Faker::Lorem.sentence
 #   expired_at = Faker::Date.between(from: Date.today, to: 1.year.from_now)
 #   status = rand(1..3)
@@ -16,8 +16,16 @@
 #   Task.create!(title: title, content: content, expired_at: expired_at, status: status, priority: priority )
 # end
 
-User.create!(
-  name: "admin",
-  email: "admin@test.com",
-  password: "password"
-)
+# User.create!(
+#   name: "admin",
+#   email: "admin@test.com",
+#   password: "password"
+# )
+
+5.times do |n|
+  name = "test#{n}"
+  email = "test#{n}@test.com"
+  password = "password"
+  
+  User.create!(name: name, email: email, password: password)
+end

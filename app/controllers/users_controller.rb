@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
+  # before_action :not_login_user?, only:[:show]
+
   def new
+    redirect_to tasks_path if logged_in?
     @user = User.new
   end
 
@@ -11,6 +14,11 @@ class UsersController < ApplicationController
     else
       render "new"
     end
+  end
+
+  def show
+    @user = User.find(params[:id])
+    not_login_user?
   end
 
    private
