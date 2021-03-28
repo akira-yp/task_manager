@@ -13,21 +13,29 @@
     <header class="sticky-top">
       <nav class="navbar">
         <ul class="nav">
-          <%=  %>
           <%= link_to "TASK MANAGER", tasks_path, class:"nav-link navbar-brand" %>
           <% if logged_in? %>
-            <li class="nav-item">
-              <%= link_to "タスク登録", new_task_path,class:"nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "タスク一覧", tasks_path, class:"nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "マイページ", user_path(current_user.id), class:"nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "ログアウト", session_path(current_user.id), method: :delete, class:"nav-link" %>
-            </li>
+            <% if current_user.admin? %>
+              <li class="nav-item">
+                <%= link_to "ユーザー一覧", admin_users_path,class:"nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ユーザー登録", new_admin_user_path,class:"nav-link" %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "タスク登録", new_task_path,class:"nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "タスク一覧", tasks_path, class:"nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "マイページ", user_path(current_user.id), class:"nav-link" %>
+              </li>
+            <% end %>
+              <li class="nav-item">
+                <%= link_to "ログアウト", session_path(current_user.id), method: :delete, class:"nav-link" %>
+              </li>
           <% else %>
             <li class="nav-item">
               <%= link_to "サインアップ", new_user_path,class:"nav-link" %>

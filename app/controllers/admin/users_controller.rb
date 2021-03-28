@@ -1,5 +1,8 @@
 class Admin::UsersController < ApplicationController
+  before_action :require_admin
   before_action :set_user, only:[:edit, :update, :destroy]
+
+
   def index
     @users = User.all
   end
@@ -41,10 +44,14 @@ class Admin::UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
     end
 
     def set_user
       @user = User.find(params[:id])
+    end
+
+    def require_admin
+      redirect_to root_url unless current_user.admin?
     end
 end
