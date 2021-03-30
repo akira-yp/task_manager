@@ -12,15 +12,15 @@ class TasksController < ApplicationController
       elsif params[:task][:status].present?
         @tasks = current_user.tasks.search_status(params[:task][:status]).page(params[:page])
       else
-        @tasks = current_user.tasks.all.order(created_at: :DESC).page(params[:page])
+        @tasks = current_user.tasks.select(:id, :title, :content, :created_at,:status,:priority,:expired_at).order(created_at: :DESC).page(params[:page])
       end
     else
       if params[:sort_expired]
-        @tasks = current_user.tasks.all.order(expired_at: :DESC).page(params[:page])
+        @tasks = current_user.tasks.select(:id, :title, :content, :created_at,:status,:priority,:expired_at).order(expired_at: :ASC).page(params[:page])
       elsif params[:sort_priority]
-        @tasks = current_user.tasks.all.order(priority: :ASC).page(params[:page])
+        @tasks = current_user.tasks.select(:id, :title, :content, :created_at,:status,:priority,:expired_at).order(priority: :ASC).page(params[:page])
       else
-        @tasks = current_user.tasks.all.order(created_at: :DESC).page(params[:page])
+        @tasks = current_user.tasks.select(:id, :title, :content, :created_at,:status,:priority,:expired_at).order(created_at: :DESC).page(params[:page])
       end
     end
   end
