@@ -1,5 +1,5 @@
 require 'rails_helper'
-require 'date'
+
 RSpec.describe 'ユーザー機能', type: :system do
   context 'ユーザー新規登録した場合' do
     before do
@@ -10,8 +10,8 @@ RSpec.describe 'ユーザー機能', type: :system do
       fill_in 'パスワード確認', with:'password'
       click_button '登録する'
     end
-    it 'ユーザーテーブルに登録される' do
-      expect(User.last).to include("test8")
+    it '新規登録成功のメッセージが表示される' do
+      expect(page).to have_content("新規ユーザー登録しました")
     end
   end
   context 'ログインせずに一覧画面にアクセスした場合' do
@@ -19,8 +19,7 @@ RSpec.describe 'ユーザー機能', type: :system do
     visit tasks_path
     end
     it 'ログインページが表示される' do
-      expect(page).to have_content 'ログイン画面'
+      expect(page).to have_selector 'h2', text:'ログイン'
     end
-  end
   end
 end

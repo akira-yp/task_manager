@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to tasks_path
+      redirect_to tasks_path, notice:"新規ユーザー登録しました"
     else
       render "new"
     end
