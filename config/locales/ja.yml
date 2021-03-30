@@ -29,4 +29,6 @@ ja:
       user:
         name: 名前
         email: e-mail
+        password: パスワード
+        password_confirmation: パスワード確認
         password_digest: パスワード

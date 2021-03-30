@@ -1,6 +1,8 @@
 class TasksController < ApplicationController
+  before_action :check_login
   before_action :set_task, only:[:show, :edit, :update, :destroy]
   before_action :check_login, only:[:index]
+
   def index
     if params[:task].present?
       if params[:task][:title].present? && params[:task][:status].present?
@@ -66,8 +68,8 @@ class TasksController < ApplicationController
   def task_params
     params.require(:task).permit(:title, :content, :expired_at, :status, :priority)
   end
-
-  def check_login
-    redirect_to new_sessions_path unless logged_in?
-  end
+  #
+  # def check_login
+  #   redirect_to new_session_path unless logged_in?
+  # end
 end

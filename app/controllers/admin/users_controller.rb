@@ -1,4 +1,5 @@
 class Admin::UsersController < ApplicationController
+  before_action :check_login
   before_action :require_admin
   before_action :set_user, only:[:edit, :update, :destroy]
 
