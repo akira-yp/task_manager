@@ -36,6 +36,7 @@ class Admin::UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
+    redirect_to admin_users_path if current_user.id = @user.id
     if @user.destroy
       redirect_to admin_users_path, notice: "ユーザーを削除しました"
     else
@@ -54,5 +55,6 @@ class Admin::UsersController < ApplicationController
 
     def require_admin
       redirect_to root_url unless current_user.admin?
+      flash[:notice] = '管理者以外はアクセスを許可されていません'
     end
 end
