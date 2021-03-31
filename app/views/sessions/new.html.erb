@@ -1,8 +1,8 @@
 <h2>ログイン</h2>
 <%= form_with(scope: :session, url:sessions_path, local:true ) do |f| %>
-  <%= f.label :email %>
-  <%= f.email_field :email %>
-  <%= f.label :password %>
+  <%= f.label :email, t('view.email') %>
+  <%= f.email_field :email%>
+  <%= f.label :password, t('view.password') %>
   <%= f.password_field :password %>
-  <%= f.submit "Log in" %>
+  <%= f.submit t('view.login') %>
 <% end %>

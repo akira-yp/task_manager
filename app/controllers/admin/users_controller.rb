@@ -1,11 +1,14 @@
 class Admin::UsersController < ApplicationController
   before_action :check_login
   before_action :require_admin
-  before_action :set_user, only:[:edit, :update, :destroy]
+  before_action :set_user, only:[:show, :edit, :update, :destroy]
 
 
   def index
-    @users = User.all.includes(:tasks)
+    @users = User.all.includes(:tasks).order(created_at: :DESC)
+  end
+
+  def show
   end
 
   def new
@@ -22,11 +25,9 @@ class Admin::UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to admin_users_path,notice:"ユーザー情報を更新しました"
     else
@@ -35,12 +36,14 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
-    redirect_to admin_users_path if current_user.id = @user.id
-    if @user.destroy
-      redirect_to admin_users_path, notice: "ユーザーを削除しました"
+    if current_user.id == @user.id
+      redirect_to admin_users_path
     else
-      render :index
+      if @user.destroy
+        redirect_to admin_users_path, notice: "ユーザーを削除しました"
+      else
+        render :index
+      end
     end
   end
 
@@ -54,7 +57,9 @@ class Admin::UsersController < ApplicationController
     end
 
     def require_admin
-      redirect_to root_url unless current_user.admin?
+      unless current_user.admin?
+      redirect_to tasks_path
       flash[:notice] = '管理者以外はアクセスを許可されていません'
+      end
     end
 end

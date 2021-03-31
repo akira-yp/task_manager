@@ -1,3 +1,7 @@
+<div class="">
+  <h2>タスク一覧</h2>
+</div>
+
 <%= form_with(scope: :task, url: tasks_path, method: :get, local: true) do |f| %>
   <div class="container">
     <div class="row my-4 justify-content-md-left">
@@ -41,9 +45,9 @@
         <td><%= task.status %></td>
         <td><%= task.priority %></td>
         <td>
-        <%= link_to t('view.show'), task_path(task.id),class:"btn btn-sm btn-outline-secondary" %>
-        <%= link_to t('view.edit'), edit_task_path(task.id),class:"btn btn-sm btn-outline-secondary" %>
-        <%= link_to t('view.destroy'), task_path(task.id), method: :delete, data: { confirm: '削除してよろしいですか？'},class:"btn btn-sm btn-outline-danger" %>
+        <%= link_to t('view.show'), task_path(task.id),class:"btn btn-sm btn-outline-secondary show-btn" %>
+        <%= link_to t('view.edit'), edit_task_path(task.id),class:"btn btn-sm btn-outline-secondary edit-btn" %>
+        <%= link_to t('view.destroy'), task_path(task.id), method: :delete, data: { confirm: '削除してよろしいですか？'},class:"btn btn-sm btn-outline-danger delete-btn" %>
       </td>
       </tr>
     <% end %>

@@ -15,6 +15,9 @@ ja:
     edit: 編集
     destroy: 削除
     back: 戻る
+    email: e-mail
+    password: パスワード
+    login: ログイン
   activerecord:
     models:
       task: タスク
