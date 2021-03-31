@@ -1,6 +1,11 @@
 require 'rails_helper'
 require 'date'
 RSpec.describe 'タスク管理機能', type: :system do
+  let!(:f_user){FactoryBot.create(:first_user)}
+  let!(:task_a){FactoryBot.create(:first_task)}
+  let!(:task_b){FactoryBot.create(:second_task)}
+  let!(:task_c){FactoryBot.create(:third_task)}
+
   describe '新規作成機能' do
     context 'タスクを新規作成した場合' do
       before do
@@ -20,9 +25,6 @@ RSpec.describe 'タスク管理機能', type: :system do
     end
   end
   describe '一覧表示機能' do
-    let!(:task_a){FactoryBot.create(:first_task)}
-    let!(:task_b){FactoryBot.create(:second_task)}
-    let!(:task_c){FactoryBot.create(:third_task)}
     before do
       visit tasks_path
     end

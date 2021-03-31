@@ -2,29 +2,34 @@ require 'rails_helper'
 require 'date'
 
 RSpec.describe 'タスクモデル機能', type: :model do
+
+  let!(:f_user){FactoryBot.create(:first_user)}
+
   describe 'バリデーションのテスト' do
     context 'タスクのタイトルが空の場合' do
       it 'バリデーションに引っかかる' do
-        task = Task.new(title:'', content:'バリデーションテスト', expired_at: DateTime.now )
+        task = Task.new(title:'', content:'バリデーションテスト', expired_at: DateTime.now, status:1, priority:1, user_id: f_user.id )
         expect(task).not_to be_valid
       end
     end
+
     context 'タスクの詳細が空の場合' do
       it 'バリデーションに引っかかる' do
-        task = Task.new(title:'バリデーションテスト', content:'',expired_at: DateTime.now )
+        task = Task.new(title:'バリデーションテスト', content:'',expired_at: DateTime.now, status:1, priority:1, user_id: f_user.id )
         expect(task).not_to be_valid
       end
     end
+
     context 'タスクのタイトルと詳細に内容が記載されている場合' do
       it 'バリデーションが通る' do
-        task = Task.new(title:'バリデーションテスト', content:'バリデーションテスト', expired_at: DateTime.now )
+        task = Task.new(title:'バリデーションテスト', content:'バリデーションテスト', expired_at: DateTime.now, status:1, priority:1, user_id: f_user.id )
         expect(task).to be_valid
       end
     end
   end
   describe '検索機能' do
-    let!(:task_a){ FactoryBot.create(:first_task) }
-    let!(:task_b){ FactoryBot.create(:second_task) }
+    let!(:task_a){ FactoryBot.create(:first_task, user_id: f_user.id) }
+    let!(:task_b){ FactoryBot.create(:second_task, user_id: f_user.id) }
     context 'scopeメソッドでタイトルのあいまい検索をした場合' do
       it '検索キーワードを含むタスクが絞り込まれる' do
         expect(Task.search_title('test_title1')).to include(task_a)

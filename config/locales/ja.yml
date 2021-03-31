@@ -19,6 +19,9 @@ ja:
     password: パスワード
     login: ログイン
   activerecord:
+    errors:
+      messages:
+        record_invalid: 'バリデーションに失敗しました: %{errors}'
     models:
       task: タスク
       user: ユーザー
