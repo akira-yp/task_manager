@@ -65,12 +65,6 @@ RSpec.describe 'タスク管理機能', type: :system do
     end
   end
   describe '検索機能' do
-    # let!(:task_a){FactoryBot.create(:first_task)}
-    # let!(:task_b){FactoryBot.create(:second_task)}
-    # let!(:task_c){FactoryBot.create(:third_task)}
-    # before do
-    #   visit tasks_path
-    # end
     context 'タイトルであいまい検索をした場合' do
       it '検索キーワードを含むタスクが絞り込まれる' do
         fill_in 'タスク名', with:'title1'

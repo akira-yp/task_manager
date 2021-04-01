@@ -9,7 +9,7 @@ class User < ApplicationRecord
 
   has_secure_password
 
-  has_many :tasks
+  has_many :tasks, dependent: :destroy
 
   private
     def not_destroy_or_update_last_admin
