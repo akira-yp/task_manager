@@ -9,6 +9,25 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
+    if params[:task].present?
+      if params[:task][:title].present? && params[:task][:status].present?
+        @tasks = @user.tasks.search_title(params[:task][:title]).search_status(params[:task][:status]).page(params[:page])
+      elsif params[:task][:title].present?
+        @tasks = @user.tasks.search_title(params[:task][:title]).page(params[:page])
+      elsif params[:task][:status].present?
+        @tasks = @user.tasks.search_status(params[:task][:status]).page(params[:page])
+      else
+        @tasks = @user.tasks.select(:id, :title, :content, :created_at,:status,:priority,:expired_at).order(created_at: :DESC).page(params[:page])
+      end
+    else
+      if params[:sort_expired]
+        @tasks = @user.tasks.select(:id, :title, :content, :created_at,:status,:priority,:expired_at).order(expired_at: :ASC).page(params[:page])
+      elsif params[:sort_priority]
+        @tasks = @user.tasks.select(:id, :title, :content, :created_at,:status,:priority,:expired_at).order(priority: :ASC).page(params[:page])
+      else
+        @tasks = @user.tasks.select(:id, :title, :content, :created_at,:status,:priority,:expired_at).order(created_at: :DESC).page(params[:page])
+      end
+    end
   end
 
   def new
