@@ -19,7 +19,8 @@
 User.create!(
   name: "admin",
   email: "admin@test.com",
-  password: "password"
+  password: "password",
+  admin: true
 )
 
 5.times do |n|
@@ -27,5 +28,5 @@ User.create!(
   email = "test#{n}@test.com"
   password = "password"
 
-  User.create!(name: name, email: email, password: password)
+  User.create!(name: name, email: email, password: password, admin:false)
 end
