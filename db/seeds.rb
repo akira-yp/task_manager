@@ -16,16 +16,16 @@
 #   Task.create!(title: title, content: content, expired_at: expired_at, status: status, priority: priority )
 # end
 
-# User.create!(
-#   name: "admin",
-#   email: "admin@test.com",
-#   password: "password"
-# )
+User.create!(
+  name: "admin",
+  email: "admin@test.com",
+  password: "password"
+)
 
 5.times do |n|
   name = "test#{n}"
   email = "test#{n}@test.com"
   password = "password"
-  
+
   User.create!(name: name, email: email, password: password)
 end
