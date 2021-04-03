@@ -1,8 +1,7 @@
-<div class="">
-  <h2>タスク一覧</h2>
-</div>
+<h2><%= @user.name %>さんのマイページ</h2>
+<p>email：<%= @user.email %></p>
 
-<%= form_with(scope: :task, url: tasks_path, method: :get, local: true) do |f| %>
+<%= form_with(scope: :task, url: admin_user_path(@user.id), method: :get, local: true) do |f| %>
   <div class="container">
     <div class="row my-4 justify-content-md-left">
       <div class:"col-auto">
@@ -29,10 +28,9 @@
     <tr>
       <th scope="col"><%= t('view.title') %></th>
       <th scope="col"><%= t('view.content') %></th>
-      <th scope="col"><%= link_to t('view.expired_at'), tasks_path(sort_expired:"true") %></th>
+      <th scope="col"><%= link_to t('view.expired_at'), admin_user_path(id: @user.id, sort_expired:"true") %></th>
       <th scope="col"><%= t('view.status') %></th>
-      <th scope="col"><%= link_to t('view.priority'), tasks_path(sort_priority:"true") %></th>
-      <th scope="col"></th>
+      <th scope="col"><%= link_to t('view.priority'), admin_user_path(id: @user.id, sort_priority:"true") %></th>
     </tr>
   </thead>
 
@@ -44,11 +42,6 @@
         <td><%= task.expired_at.strftime("%m/%d/%H:%M") %></td>
         <td><%= task.status %></td>
         <td><%= task.priority %></td>
-        <td>
-        <%= link_to t('view.show'), task_path(task.id),class:"btn btn-sm btn-outline-secondary show-btn" %>
-        <%= link_to t('view.edit'), edit_task_path(task.id),class:"btn btn-sm btn-outline-secondary edit-btn" %>
-        <%= link_to t('view.destroy'), task_path(task.id), method: :delete, data: { confirm: '削除してよろしいですか？'},class:"btn btn-sm btn-outline-danger delete-btn" %>
-      </td>
       </tr>
     <% end %>
   </tbody>
