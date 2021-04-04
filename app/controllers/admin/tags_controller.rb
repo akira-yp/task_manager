@@ -17,7 +17,7 @@ class Admin::TagsController < ApplicationController
   def destroy
     @tag = Tag.find(params[:id])
     if @tag.destroy
-      redirect_to new_admin_tag_path, notice:"#{@tag.name}タグを削除しました"
+      redirect_to new_admin_tag_path, notice:"#{@tag.name}ラベルを削除しました"
     else
       render :new
     end

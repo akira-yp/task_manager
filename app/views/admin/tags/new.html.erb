@@ -1,8 +1,8 @@
-<h2>タグ作成</h2>
+<h2>ラベル作成</h2>
 <div class="card p-3">
   <div>
     <%= form_with(model: @tag, url: admin_tags_path,local:true) do |f| %>
-      <%= f.label :name,'タグ名' %>
+      <%= f.label :name,'ラベル名' %>
       <%= f.text_field :name %>
       <%= f.submit '作成' %>
     <% end %>
