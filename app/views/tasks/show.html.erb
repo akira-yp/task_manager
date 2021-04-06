@@ -3,6 +3,9 @@
   <div class="card" style="width: 20rem;" >
     <div class="card-header">
       <%= @task.title %>
+      <% @task.tags.each do | tag | %>
+        <label class="label-bg label-sm"><%= tag.name %></label>
+      <% end %>
     </div>
     <div class="card-body">
       <%= @task.content %>
