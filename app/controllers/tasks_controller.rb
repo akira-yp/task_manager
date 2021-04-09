@@ -64,11 +64,11 @@ class TasksController < ApplicationController
 
   private
   def set_task
-    @task = current_user.tasks.find(params[:id])
+    @task = current_user.tasks.includes(:tags).find(params[:id])
   end
 
   def task_params
-    params.require(:task).permit(:title, :content, :expired_at, :status, :priority,{ tag_ids:[] })
+    params.require(:task).permit(:title, :content, :expired_at, :status, :priority, {tag_ids:[]})
   end
   #
   # def check_login

@@ -7,7 +7,10 @@ FactoryBot.define do
     status { 1 }
     priority { 2 }
 
-    association :user
+    after(:build) do | task |
+      tag = create(:tag_1)
+      task.taggings << build(:tagging, task: task, tag: tag)
+    end
   end
 
   factory :second_task, class: Task do
@@ -16,8 +19,6 @@ FactoryBot.define do
     expired_at { DateTime.new(2021,6,1)}
     status { 2 }
     priority { 3 }
-
-    association :user
   end
 
   factory :third_task, class: Task do
@@ -26,7 +27,5 @@ FactoryBot.define do
     expired_at { DateTime.new(2021,5,1) }
     status { 3 }
     priority { 1 }
-
-    association :user
   end
 end

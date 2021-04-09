@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :tagging do
-    task { nil }
-    tag { nil }
+    task
+    tag
   end
 end
