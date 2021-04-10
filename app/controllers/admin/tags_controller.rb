@@ -1,4 +1,6 @@
 class Admin::TagsController < ApplicationController
+  before_action :check_login
+  before_action :require_admin
 
   def new
     @tag = Tag.new
@@ -26,5 +28,12 @@ class Admin::TagsController < ApplicationController
   private
   def tag_params
     params.require(:tag).permit(:name)
+  end
+
+  def require_admin
+    unless current_user.admin?
+    redirect_to tasks_path
+    flash[:notice] = '管理者以外はアクセスを許可されていません'
+    end
   end
 end
