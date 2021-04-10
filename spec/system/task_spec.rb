@@ -3,6 +3,7 @@ require 'date'
 
 RSpec.describe 'タスク管理機能', type: :system do
 
+  let!(:a_user){FactoryBot.create(:admin_user)}
   let!(:f_user){FactoryBot.create(:first_user)}
   let!(:s_user){FactoryBot.create(:second_user)}
 
@@ -149,5 +150,21 @@ RSpec.describe 'タスク管理機能', type: :system do
          expect(page).to have_content '仕事'
        end
      end
+  end
+  describe 'ラベル作成機能' do
+    context '管理者権限でラベルを作成した場合' do
+      before do
+        visit new_session_path
+        fill_in 'e-mail', with:'admin@test.com'
+        fill_in 'パスワード', with:'password'
+        click_button 'ログイン'
+        click_link 'ラベル作成'
+      end
+      it '作成したラベルが追加される' do
+        fill_in 'ラベル名', with:'サンプル'
+        click_button '作成'
+        expect(page).to have_content 'サンプル'
+      end
+    end
   end
 end
