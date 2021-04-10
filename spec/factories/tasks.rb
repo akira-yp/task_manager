@@ -7,10 +7,10 @@ FactoryBot.define do
     status { 1 }
     priority { 2 }
 
-    after(:build) do | task |
-      tag = create(:tag_1)
-      task.taggings << build(:tagging, task: task, tag: tag)
-    end
+    # after(:build) do | task |
+    #   tag = create(:tag_1)
+    #   task.taggings << build(:tagging, task: task, tag: tag)
+    # end
   end
 
   factory :second_task, class: Task do
