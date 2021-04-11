@@ -45,7 +45,7 @@ p,th,td {
 
 .form-card {
   width: 500px;
-  height: 550px;
+  min-height: 550px;
   padding: 10px;
   border: 1px solid #DFDFDF;
   border-radius: 5px;
@@ -53,7 +53,7 @@ p,th,td {
 
 .login-form {
   width: 500px;
-  height: 300px;
+  min-height: 300px;
   padding: 10px;
   border: 1px solid #DFDFDF;
   border-radius: 5px;

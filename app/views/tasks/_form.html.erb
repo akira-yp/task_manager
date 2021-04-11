@@ -11,23 +11,23 @@
         </div>
       <% end %>
       <div class="mb-3">
-        <%= f.label :title, class:"form-label" %>
+        <%= f.label :title, t('view.title'),class:"form-label" %>
         <%= f.text_field :title, class:"form-control" %>
       </div>
       <div class="mb-3">
-        <%= f.label :content, class:"form-label" %>
+        <%= f.label :content, t('view.content'),class:"form-label" %>
         <%= f.text_area :content, class:"form-control" %>
       </div>
       <div class="mb-3">
-        <%= f.label :expired_at, class:"form-label" %>
+        <%= f.label :expired_at, t('view.expired_at'),class:"form-label" %>
         <%= f.datetime_field :expired_at, class:"form-control" %>
       </div>
       <div class="mb-3">
-        <%= f.label :status, class:"form-label" %>
+        <%= f.label :status, t('view.status'),class:"form-label" %>
         <%= f.select :status,Task.statuses.keys,{prompt: "選択してください"}, class: "status-select form-control" %>
       </div>
       <div class="mb-3">
-          <%= f.label :priority, class:"form-label" %>
+          <%= f.label :priority, t('view.priority'),class:"form-label" %>
           <%= f.select :priority, Task.priorities.keys,{prompt: "選択してください"},class: "priority-select form-control" %>
       </div>
 
