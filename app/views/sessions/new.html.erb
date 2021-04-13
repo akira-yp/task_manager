@@ -1,8 +1,18 @@
 <h2>ログイン</h2>
-<%= form_with(scope: :session, url:sessions_path, local:true ) do |f| %>
-  <%= f.label :email, t('view.email') %>
-  <%= f.email_field :email%>
-  <%= f.label :password, t('view.password') %>
-  <%= f.password_field :password %>
-  <%= f.submit t('view.login') %>
-<% end %>
+<div class="main-area">
+  <div class="login-form">
+    <%= form_with(scope: :session, url:sessions_path, local:true ) do |f| %>
+      <div class="mb-3">
+        <%= f.label :email, t('view.email'), class:"form-label" %>
+        <%= f.email_field :email, class:"form-control"%>
+      </div>
+      <div class="mb-3">
+        <%= f.label :password, t('view.password'), class:"form-label" %>
+        <%= f.password_field :password, class:"form-control" %>
+      </div>
+      <div class="mb-3">
+        <%= f.submit t('view.login'), class:"btn btn-outline-secondary btn-sm"  %>
+      </div>
+    <% end %>
+  </div>
+</div>

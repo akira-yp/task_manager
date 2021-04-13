@@ -13,6 +13,9 @@ class Task < ApplicationRecord
 
   scope :search_title, -> (data){ where('title Like ?', "%#{data}%") }
   scope :search_status, -> (data){ where(status: data) }
+  scope :search_tag, -> (data){ joins(:tags).where('tags.id = ?', data)}
 
   belongs_to :user
+  has_many :taggings, dependent: :destroy
+  has_many :tags, through: :taggings
 end

@@ -11,6 +11,8 @@ class TasksController < ApplicationController
         @tasks = current_user.tasks.search_title(params[:task][:title]).page(params[:page])
       elsif params[:task][:status].present?
         @tasks = current_user.tasks.search_status(params[:task][:status]).page(params[:page])
+      elsif params[:task][:tag].present?
+        @tasks = current_user.tasks.search_tag(params[:task][:tag]).page(params[:page])
       else
         @tasks = current_user.tasks.select(:id, :title, :content, :created_at,:status,:priority,:expired_at).order(created_at: :DESC).page(params[:page])
       end
@@ -20,7 +22,7 @@ class TasksController < ApplicationController
       elsif params[:sort_priority]
         @tasks = current_user.tasks.select(:id, :title, :content, :created_at,:status,:priority,:expired_at).order(priority: :ASC).page(params[:page])
       else
-        @tasks = current_user.tasks.select(:id, :title, :content, :created_at,:status,:priority,:expired_at).order(created_at: :DESC).page(params[:page])
+        @tasks = current_user.tasks.includes(:tags).all.order(created_at: :DESC).page(params[:page])
       end
     end
   end
@@ -62,11 +64,11 @@ class TasksController < ApplicationController
 
   private
   def set_task
-    @task = current_user.tasks.find(params[:id])
+    @task = current_user.tasks.includes(:tags).find(params[:id])
   end
 
   def task_params
-    params.require(:task).permit(:title, :content, :expired_at, :status, :priority)
+    params.require(:task).permit(:title, :content, :expired_at, :status, :priority, {tag_ids:[]})
   end
   #
   # def check_login

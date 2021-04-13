@@ -1,20 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
-# 200.times do |n|
-#   title =
-#   content = Faker::Lorem.sentence
-#   expired_at = Faker::Date.between(from: Date.today, to: 1.year.from_now)
-#   status = rand(1..3)
-#   priority = rand(1..3)
-#
-#   Task.create!(title: title, content: content, expired_at: expired_at, status: status, priority: priority )
-# end
 
 User.create!(
   name: "admin",
@@ -23,10 +6,33 @@ User.create!(
   admin: true
 )
 
-5.times do |n|
+10.times do |n|
   name = "test#{n}"
   email = "test#{n}@test.com"
   password = "password"
 
   User.create!(name: name, email: email, password: password, admin:false)
 end
+
+10.times do |n|
+  name = "tag#{n}"
+
+  Tag.create!(name: name)
+end
+
+100.times do |n|
+  title = "タスク#{n}"
+  content = "タスクの内容#{n}"
+  priority = rand(1..3)
+  status = rand(1..3)
+  expired_at = DateTime.new(2021,5, rand(1..30) )
+  user_id = rand(2..10)
+
+  Task.create!(title: title, content: content, priority: priority, status: status, expired_at: expired_at, user_id: user_id)
+end
+
+taggings_list = []
+Task.all.ids.each do |task_id|
+  taggings_list << { task_id: task_id, tag_id: rand(1..10) }
+end
+Tagging.create!(taggings_list)
